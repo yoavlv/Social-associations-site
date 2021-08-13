@@ -1,0 +1,37 @@
+{% block content %}
+
+
+        <h2>חיפוש אסוציאציה</h2>
+        <br/>
+        <form action ="{% url 'search-function' %}"  name='search' method="post" class="from-inline">
+            {% csrf_token %}
+
+            <input type="text" name="search" class="form-control mb-2 rm-sm-2" id="inlineFormInputName2" placeholder="הזן מילה באנגלית">
+        <button type="submit" class="btn btn-primary mb-2 ">חפש</button>
+
+            {% for word in Words %}
+                 <li class="list-group-item"> {{ Words.English_word  }}  </li>
+        </form>
+            {% endfor %}
+
+
+    {% if search%}
+
+    {% for item in word %}
+                <div class="card">
+                  <h5 class="card-header">
+                    {{ item.English_word }}
+                  </h5>
+                  <div class="card-body">
+                    <h5 class="card-title"> תרגום :
+                        {{ item.Hebrew_word }}</h5>
+                    <p class="card-text">  אסוציאציה :
+                        {{ item.How_To_Remember}}</p>
+                      </div>
+                    </div>
+           {% endfor %}
+           {%endif%}
+
+
+
+{% endblock content %}
