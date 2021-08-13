@@ -55,21 +55,40 @@ def Search_word(request):
 
 
 
+# def practice(request):
+#     words_list = Words.objects.filter(approved= True)  # Take all the words that approved by the admin
+#     random_word_to_guess = random.choice(words_list) # Take one random words from the DB
+#     word_1 = random.choice(words_list)
+#     word_2 = random.choice(words_list)
+#     word_3 = random.choice(words_list)
+#     if request.method == "POST":
+#         if request.GET.get('correct') == "correct": # if the user click on button that his name =correct - the choice is correct
+#             message = "Correct answer"
+#             return render(request, "practice.html", {'message': message})
+#         else: # if the user click on other button that his name = incorrect - the choice is wrong and show him the massage
+#             message = "wrong answer"
+#             return render(request, "practice.html", {'message': message})
+#
+#     return render(request, "practice.html", {'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
+#
+
+
 def practice(request):
-    words_list = Words.objects.filter(approved= True)  # Take all the words that approved
-    random_word_to_guess = random.choice(words_list)
+    words_list = Words.objects.filter(approved= True)  # Take all the words that approved by the admin
+    random_word_to_guess = random.choice(words_list) # Take one random words from the DB
     word_1 = random.choice(words_list)
     word_2 = random.choice(words_list)
     word_3 = random.choice(words_list)
     if request.method == "POST":
-        if 'correct' == request.method.POST:
+        guess = request.GET.get("guess")
+        if request.GET.get(guess) == 'correct': # if the user click on button that his name =correct - the choice is correct
             message = "Correct answer"
-            return render(request, "practice.html", {'message': message})
-        else:
+            return render(request, "practice.html", {'message': message,'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
+        else: # if the user click on other button that his name = incorrect - the choice is wrong and show him the massage
             message = "wrong answer"
-            return render(request, "practice.html", {'message': message})
-
+            return render(request, "practice.html", {'message': message,'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
     return render(request, "practice.html", {'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
+
 
 
 

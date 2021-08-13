@@ -8,13 +8,14 @@
     {{random_word_to_guess.English_word}}
 </br> </br> </br>
 
-<form name = "guess" action ="" method="post" class="from-inline">
+<form name = "guess" action ="" method="get" class="from-inline">
     <button name = "uncorrect" type="button" value="Submit" class="btn btn-primary">{{word_1.Hebrew_word}}</button>
     <button name = "uncorrect" type="button" value="Submit" class="btn btn-primary">{{word_2.Hebrew_word}}</button>
     <button name = "uncorrect" type="button" value="Submit" class="btn btn-primary">{{word_3.Hebrew_word}}</button>
     <button name = "correct" type="button" value="Submit" class="btn btn-primary">{{random_word_to_guess.Hebrew_word}}</button>
-
+{%if guess %}
     {{message}}
+{%endif%}
 
 </form>
 </center>
