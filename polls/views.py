@@ -36,6 +36,7 @@ def add_word(request):
 def Show_all_words(request):
     words_list = Words.objects.filter(approved= True)
     count = Words.objects.all().count()
+    words_list.order_by("-pub_date")
     return render(request,"all_words.html",{"words_list":words_list})
 
 
@@ -55,23 +56,6 @@ def Search_word(request):
 
 
 
-# def practice(request):
-#     words_list = Words.objects.filter(approved= True)  # Take all the words that approved by the admin
-#     random_word_to_guess = random.choice(words_list) # Take one random words from the DB
-#     word_1 = random.choice(words_list)
-#     word_2 = random.choice(words_list)
-#     word_3 = random.choice(words_list)
-#     if request.method == "POST":
-#         if request.GET.get('correct') == "correct": # if the user click on button that his name =correct - the choice is correct
-#             message = "Correct answer"
-#             return render(request, "practice.html", {'message': message})
-#         else: # if the user click on other button that his name = incorrect - the choice is wrong and show him the massage
-#             message = "wrong answer"
-#             return render(request, "practice.html", {'message': message})
-#
-#     return render(request, "practice.html", {'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
-#
-
 
 def practice(request):
     words_list = Words.objects.filter(approved= True)  # Take all the words that approved by the admin
@@ -79,15 +63,33 @@ def practice(request):
     word_1 = random.choice(words_list)
     word_2 = random.choice(words_list)
     word_3 = random.choice(words_list)
+    quiz_list = [word_1, word_2, word_3, random_word_to_guess]
+    random_list = random.shuffle(quiz_list)
+    count = 0
+    correct_answer = 0
+    incorrect_answer = 0
+    n_list = ["correct","incorrect","incorrect",'incorrect']
+    random.shuffle(n_list)
     if request.method == "POST":
-        guess = request.GET.get("guess")
-        if request.GET.get(guess) == 'correct': # if the user click on button that his name =correct - the choice is correct
-            message = "Correct answer"
-            return render(request, "practice.html", {'message': message,'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
-        else: # if the user click on other button that his name = incorrect - the choice is wrong and show him the massage
-            message = "wrong answer"
-            return render(request, "practice.html", {'message': message,'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
-    return render(request, "practice.html", {'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,})
+        quiz = request.POST.get("quiz") #Grab the item from the form
+        if request.POST.get('correct'): # if the user click on button that his name =correct - the choice is correct
+            message = "תשובה נכונה"
+            count += 1
+            correct_answer +=1
+            return HttpResponseRedirect("/polls/practice",{"incorrect_answer":incorrect_answer,"correct_answer":correct_answer,'count':count,'message': message, 'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,"quiz":quiz})
+        elif request.POST.get('incorrect'):
+            count += 1
+            incorrect_answer += 1
+            message = "תשובה לא נכונה"
+            return render(request, "practice.html", {"incorrect_answer":incorrect_answer,"correct_answer":correct_answer,'count':count,'message': message, 'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess, "quiz":quiz })
+        elif request.POST.get('show'):
+            help = random_word_to_guess
+            return HttpResponseRedirect("/polls/practice", {"help",help})
+
+    return render(request, "practice.html", {'word_1':word_1,'word_2':word_2,'word_3':word_3,'random_word_to_guess':random_word_to_guess,'count':count})
+
+
+
 
 
 
