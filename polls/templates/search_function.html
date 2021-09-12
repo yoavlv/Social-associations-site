@@ -1,9 +1,12 @@
 {% block content %}
+{% load static %}
+
+<link  rel="stylesheet" href="{%static 'css/search_function.css'%}"  >
 
 
         <h2>חיפוש אסוציאציה</h2>
         <br/>
-        <form action ="{% url 'search-function' %}"  name='search' method="post" class="from-inline">
+        <form id ='search' action ="{% url 'search-function' %}"  name='search' method="post" class="from-inline">
             {% csrf_token %}
 
             <input type="text" name="search" class="form-control mb-2 rm-sm-2" id="inlineFormInputName2" placeholder="הזן מילה באנגלית">

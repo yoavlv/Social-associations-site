@@ -1,40 +1,38 @@
 {% extends "base.html" %}
-
 {% block content %}
+
+{% load static %}
+<link  rel="stylesheet" href="{%static 'css/practice.css'%}"  >
+
 <center>
-</br>
 <h1> תרגול מילים </h1>
-    </br>
+
+
+<div id="word"> {{x.English_word}}</div>
+
+    {%for i in four_options%}
+    <form method="POST">
+            {%csrf_token%}
+
+    <br/>
+    <input id='quizz' name = "quiz" type="submit" value={{i.Hebrew_word}} class="btn btn-primary"/>
+        </form>
+        {%endfor%}
+<br/>
+    <div id="message">{{message}}</div>
 
 
 
-    <h2>{{random_word_to_guess.English_word}}</h2>
-</br> </br> </br>
-
-
-{{count}}
 
 
 
-<form name = "quiz" action=""  method="post" class="from-inline">
-    {% csrf_token %}
+{% endblock %}
+
+
+
+<!--
     <input name = "incorrect" type="submit" value={{word_1.Hebrew_word}} class="btn btn-primary"/>
     <input name = "incorrect" type="submit" value={{word_2.Hebrew_word}} class="btn btn-primary"/>
     <input name = "incorrect" type="submit" value={{word_3.Hebrew_word}} class="btn btn-primary"/>
     <input name = "correct" type="submit" value={{random_word_to_guess.Hebrew_word}} class="btn btn-primary"/>
-
-</br> </br>
-
-
-    <h3>{{message}} </br></br>  </h3>
-<hr/>
-
-    <input name = "show" type="submit" value="לחץ כאן לאסוציאציה" class="btn btn-primary"/>
-
-    {{help.How_To_Remember}}
-
-
-</form>
-</center>
-{% endblock %}
-
+-->

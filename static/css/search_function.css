@@ -1,0 +1,18 @@
+h2 {
+    color: #086EF9;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 60px;
+}
+
+#search {
+    color: #17A3E9;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 60px;
+}
+
+
+button {
+  bottom: 10px;
+  width: 30%;
+  border: 3px solid #92a8d1;
+}

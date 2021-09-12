@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
+
+<link  rel="stylesheet" href="{%static 'css/search_page.css'%}"  >
+
 
 <center>
 
-        <h3> !ברוך הבא לאתר האסוציאציות באתר יש  {{count}} אסוציאציות</h3>
+        <h3> ! באתר יש כרגע  {{count}} אסוציאציות</h3>
         <br/>
 
-        <h4> !אתה מוזמן לחפש להוסיף אוסצוציאציות חדשות לאתר שלנו </h4>
+        <h4> !אתם מוזמנים לחפש ולהוסיף אוסצוציאציות חדשות לאתר שלנו </h4>
 
        <br/>
 
@@ -37,7 +41,10 @@
            {% endfor %}
            {%endif%}
 
-    {{message}}
+    <div id="message" >{{message}}</div>
+    {%if x == True %}
+    <a class="add" href="{%url 'add-word'%}">לחץ כאן</a>
+    {%endif%}
 
 
 </center>

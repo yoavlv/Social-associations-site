@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br/>
+
+<h1>  רשימה של כל המילים הקיימות במאגר </h1>
+{% for i in words_list %}
+<br/>
+<div class="card">
+  <div class="card-header">
+    {{i.word}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{i.meaning}}</p>
+     <p class="card-text">{{i.Sentence}}</p>
+
+  </div>
+</div>
+
+
+{% endfor %}
+
+
+
+
+{% endblock %}

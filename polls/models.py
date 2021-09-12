@@ -14,3 +14,4 @@ class Words(models.Model):
     def __str__(self):
         return self.English_word +" " + self.Hebrew_word +" " + self.How_To_Remember +" " + self.Name
 
+

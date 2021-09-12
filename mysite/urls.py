@@ -17,6 +17,21 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
+    path('', include('polls.urls')),
     path('admin/', admin.site.urls),
+    path('anaglog/', include('analog.urls')),
+    path("anaglog/", include('django.contrib.auth.urls')),
+    path('members/', include('members.urls')),
+    path("members/", include('django.contrib.auth.urls')),
+
 ]
+
+# path('anaglog/', include('analog.urls')),
+# path("anaglog/", include('django.contrib.auth.urls')),
+
+
+# Configure Admin Titles
+
+admin.site.site_header = "My site Admin Page"
+admin.site.site_title = "Browser Title"
+admin.site.index_title = "Welcome to the admin area"
