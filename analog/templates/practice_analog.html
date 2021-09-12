@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+</br>
+<h1> תרגול מילים </h1>
+    </br>
+
+
+    <h2>{{random_word_to_guess.English_word}}</h2>
+
+</br> </br> </br>
+
+
+{{count}}
+
+
+
+<form name = "quiz" action=""  method="post" class="from-inline">
+    {% csrf_token %}
+    <input name = "incorrect" type="submit" value={{word_1.Hebrew_word}} class="btn btn-primary"/>
+    <input name = "incorrect" type="submit" value={{word_2.Hebrew_word}} class="btn btn-primary"/>
+    <input name = "incorrect" type="submit" value={{word_3.Hebrew_word}} class="btn btn-primary"/>
+    <input name = "correct" type="submit" value={{random_word_to_guess.Hebrew_word}} class="btn btn-primary"/>
+
+</br> </br>
+
+
+    <h3>{{message}} </br></br>  </h3>
+<hr/>
+
+    <input name = "show" type="submit" value="לחץ כאן לאסוציאציה" class="btn btn-primary"/>
+
+    {{help.How_To_Remember}}
+
+
+</form>
+</center>
+{% endblock %}
+

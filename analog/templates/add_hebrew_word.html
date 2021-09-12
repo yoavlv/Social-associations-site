@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+
+
+        <h2>הוסף אנלוגיה חדשה</h2>
+        <form action ="" method="post" class="from-inline">
+			{% csrf_token %}
+
+			{{ form.as_p }}
+
+        <button type="submit" value="Submit" class="btn btn-primary mb-2 ">שליחה למאגר</button>
+
+        </form>
+
+            	{% if submitted == True %}
+    </br>
+
+        		<h3>  !! המילה נשלחה בהצלחה ותוסף בקרוב למאגר </h3>
+            {% else %}
+
+
+  {%endif%}
+</center>
+
+
+
+{% endblock %}
