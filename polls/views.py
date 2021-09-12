@@ -55,23 +55,36 @@ def Show_all_words(request):
     words_list.order_by("-pub_date")
     return render(request,"all_words.html",{"words_list":words_list})
 
+
 @csrf_exempt
 def delete_word(request,word_id):
-    words_list = Words.objects.filter(approved= True).order_by("English_word")
     word =  Words.objects.get(pk=word_id)  # Get a specific item from DB
     word.delete()
-    return render(request,"edit_list.html",{"words_list":words_list})
+    return redirect("edit-list")
+
+def approved_word(request,word_id):
+    word =  Words.objects.get(pk=word_id)  # Get a specific item from DB
+    if word.approved == True:
+        word.approved = False
+        word.save()
+    else:
+        word.approved = True
+        word.save()
+
+    return redirect('edit-list')
+
 
 def update_word(request,word_id):
     word = Words.objects.get(pk=word_id)  # Get a specific item from DB
     form = WordForm(request.POST or None , instance=word)
     if form.is_valid():
         form.save()
-        return redirect('words-list')
-    return render(request, "edit_list.html", {'word': word, "form":form})
+        return redirect('edit_list.html')
+    return render(request, "update_word.html", {'word': word, "form":form})
+
 
 def edit_list(request):
-    words_list = Words.objects.filter(approved= True).order_by("English_word")
+    words_list = Words.objects.all().order_by("approved")
     return render(request,"edit_list.html",{"words_list":words_list})
 
 
@@ -109,26 +122,24 @@ def practice(request):
     four_options = [random.choice(words_list) for i in range(4)]
 
     x = four_options[0]
-    z = x.Hebrew_word
     random.shuffle(four_options)
-    choice_user = request.POST.get("quiz")
-    choice_1 = str(choice_user)
-    word = z[:4]
-    choice = choice_1[:4]
 
 
     if request.method == "POST":
+        user_choice = request.POST.get("quiz")
+        choice = str(user_choice)
+        word = x.Hebrew_word
 
         if choice == word:
             message = f'Correct {choice} == {word}'
             return render(request, "practice.html",
-                          {"four_options": four_options, "x": x, "z": z, "choice": choice, 'word': word,"message":message})
+                          {"four_options": four_options, "x": x, "choice": choice, 'word': word,"message":message})
         if choice != word:
            message = f'Incorrect {choice} != {word}'
            return render(request, "practice.html",
-                          {"four_options": four_options, "x": x, "z": z,  "choice": choice, 'word': word,"message":message})
+                          {"four_options": four_options, "x": x,  "choice": choice, 'word': word,"message":message})
 
-    return render(request, "practice.html", {"four_options": four_options, "z": z, "x": x,})
+    return render(request, "practice.html", {"four_options": four_options, "x": x})
 
 
 

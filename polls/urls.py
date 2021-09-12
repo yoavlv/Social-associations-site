@@ -10,9 +10,9 @@ urlpatterns = [
     path("practice",views.practice, name = "practice"),
     path("search_function", views.search_function, name='search-function'),
     path("edit_list", views.edit_list, name='edit-list'),
-    path('delete_word/<word_id>', views.delete_word, name='delete_word'),
-    path('update_word/<word_id>', views.update_word, name='update_word'),
-    # path('update_word/<word_id>', views.aprroved_word, name='aprroved_word'),
+    path('delete_word/<word_id>/', views.delete_word, name='delete-word'),
+    path('update_word/<word_id>/', views.update_word, name='update-word'),
+    path('approved_word/<word_id>/', views.approved_word, name='approved-word'),
 
 ]
 

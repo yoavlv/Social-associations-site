@@ -10,16 +10,20 @@ body {
   background-image: url('/static/img/1.jpg');
 }
 
-
+h2 {
+color: #17A3E9;
+font-family: "Times New Roman", Times, serif;
+font-size: 60px;
+}
 
 center {
 background-color:black;
  opacity: 0.92;
-  padding: 50px;
-  border-radius: 15px;
+  padding: 15px;
+  border-radius: 25px;
 }
 
- h1 {
+ h3 {
 color: #17A3E9;
 font-family: "Times New Roman", Times, serif;
 font-size: 40px;

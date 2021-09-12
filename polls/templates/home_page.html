@@ -10,12 +10,16 @@
 
 <center>
 </br>
-<h1> ברוך הבא
-        {% if user.is_authenticated %}
+<h1>
+            {% if user.is_authenticated %}
     {{user}}
-    {%endif%}
-    לאתר האסוציאציות </h1>
+     ברוך הבא לאתר האסוציאציות
+    {%else%}
+    ברוך הבא לאתר האסוציאציות
 
+    {%endif%}
+
+         </h1>
 
     <p>
     תנו לנו לחפש אסוציאציה בשבילכם

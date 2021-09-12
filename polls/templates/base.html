@@ -86,7 +86,7 @@
           Admin Area
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="edit-list">עריכת אסוציאציות</a>
+          <a class="dropdown-item" href="{% url 'edit-list' %}">עריכת אסוציאציות</a>
           <a class="dropdown-item" href="#"> עריכת מילים בעברית</a>
         </div>
       </li>
@@ -100,7 +100,9 @@
   </div>
 </nav>
 <div class = "container">
+  <center>
 {% block content %} {% endblock content %}
+  </center>
 </div>
 
 
