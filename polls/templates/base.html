@@ -24,36 +24,49 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'Search-page'%}">חיפוש אסוציאציה <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'add-word'%}">הוספת אסוציאציה</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'words-list'%}">כל האסוציאציות</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'practice'%}">תרגול מילים באנגלית</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'add-hebrew-word'%}">הוספת מילים בעברית</a>
-      </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'add-analog'%}">הוספת אנלוגיה חדשה</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          אנגלית
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'Search-page'%}">חיפוש אסוציאציה</a>
+          <a class="dropdown-item" href="{%url 'add-word'%}">הוספת אסוציאציה</a>
+          <a class="dropdown-item" href="{%url 'words-list'%}"> כל האסוציאציות</a>
+          <a class="dropdown-item" href="{%url 'practice'%}"> תרגול מילים באנגלית </a>
+
+        </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'Show-all-hebrew-words-list'%}">כל המילים הגבוהות</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          עברית
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{%url 'add-hebrew-word'%}">הוספת מילים בעברית</a>
+          <a class="dropdown-item" href="{%url 'add-analog'%}">הוספת אנלוגיה חדשה</a>
+          <a class="dropdown-item" href="{%url 'Show-all-hebrew-words-list'%}">כל המילים בעברית</a>
+
+        </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          כמותי
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">תרגול חישובים מהירים</a>
+          <a class="dropdown-item" href="#"> תרגילים</a>
+        </div>
+      </li>
+
+
+
 
       {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          <a style="position:absolute; right:0;" class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
       {% else %}
 
@@ -67,6 +80,17 @@
         </li>
       {% endif %}
 
+      {% if user.is_superuser %}
+      <li class="nav-item dropdown" style="position:relative; left:990px; top:2px;" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Area
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="edit-list">עריכת אסוציאציות</a>
+          <a class="dropdown-item" href="#"> עריכת מילים בעברית</a>
+        </div>
+      </li>
+      {% endif %}
 
 
 

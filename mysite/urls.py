@@ -22,7 +22,6 @@ urlpatterns = [
     path('anaglog/', include('analog.urls')),
     path("anaglog/", include('django.contrib.auth.urls')),
     path('members/', include('members.urls')),
-    path("members/", include('django.contrib.auth.urls')),
 
 ]
 

@@ -55,6 +55,33 @@ def Show_all_words(request):
     words_list.order_by("-pub_date")
     return render(request,"all_words.html",{"words_list":words_list})
 
+@csrf_exempt
+def delete_word(request,word_id):
+    words_list = Words.objects.filter(approved= True).order_by("English_word")
+    word =  Words.objects.get(pk=word_id)  # Get a specific item from DB
+    word.delete()
+    return render(request,"edit_list.html",{"words_list":words_list})
+
+def update_word(request,word_id):
+    word = Words.objects.get(pk=word_id)  # Get a specific item from DB
+    form = WordForm(request.POST or None , instance=word)
+    if form.is_valid():
+        form.save()
+        return redirect('words-list')
+    return render(request, "edit_list.html", {'word': word, "form":form})
+
+def edit_list(request):
+    words_list = Words.objects.filter(approved= True).order_by("English_word")
+    return render(request,"edit_list.html",{"words_list":words_list})
+
+
+# def aprroved_word(request,word_id):
+#     words_list = Words.objects.filter(approved= True).order_by("English_word")
+#     word =  Words.objects.get(pk=word_id)  # Get a specific item from DB
+#     word.delete()
+#     return render(request,"edit_list.html",{"words_list":words_list})
+
+
 
 
 def Search_word(request):
